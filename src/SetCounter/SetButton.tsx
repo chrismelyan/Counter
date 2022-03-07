@@ -8,7 +8,7 @@ type SetButtonType = {
 const SetButton = (props: SetButtonType) => {
     return (
         <div>
-            <Button title={'set'} callBack={props.setValue} disabled={} />
+            {/*<Button title={'set'} callBack={props.setValue} disabled={} />*/}
         </div>
     );
 };

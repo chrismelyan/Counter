@@ -6,8 +6,8 @@ type SetInputType = {
 }
 
 const SetInput = (props: SetInputType) => {
-    const onChangeHandler = (e:) => {
-        props.callBack(e.currentTarget.value)
+    const onChangeHandler = () => {
+
     }
     return (
         <span className={'input-display'}>

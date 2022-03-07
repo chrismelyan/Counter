@@ -13,7 +13,7 @@ const SetCounter = (props: SetCounterType) => {
             <SetCounterDisplay
                 setMaxValue={props.setMaxValue}
                 setStartValue={props.setStartValue}/>
-            <SetButton/>
+            <SetButton setValue={()=> {}}/>
         </div>
     );
 };

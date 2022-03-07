@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import Counter from "./Counter";
 import SetCounter from "./SetCounter/SetCounter";
@@ -9,13 +9,28 @@ function App() {
     const countValue = 1
     // let [maxValue, setMaxValue] = useState<number>(0)
     // let [startValue, setStartValue] = useState<number>(0)
-    let [counter, setCounter] = useState<number>(startValue)
+    let [counter, setCounter] = useState<number>(() => {
+        let counterAsString = localStorage.getItem('set value')
+        if(counterAsString) {
+            let newCounter = JSON.parse(counterAsString)
+            return newCounter || 0}
+    })
+
+    useEffect(() => {
+    localStorage.setItem('set value', JSON.stringify(counter))}, [counter])
+
+    // useEffect(() => {
+    //     let counterAsString = localStorage.getItem('set value')
+    //     if(counterAsString) {
+    //         let newCounter = JSON.parse(counterAsString)
+    //         setCounter(newCounter)
+    //     }
+    // }, [counter])
 
     const increment = () => {
         counter < maxValue && setCounter(counter + countValue)
     }
     const reset = () => setCounter(startValue)
-
 
 
     return (
@@ -24,11 +39,12 @@ function App() {
             {/*    setMaxValue={setMaxValue}*/}
             {/*    setStartValue={setStartValue}/>*/}
             <Counter
-               counter={counter}
-               increment={increment}
-               reset={reset}
-               maxValue={maxValue}
-               startValue={startValue}/>
+                counter={counter}
+                increment={increment}
+                reset={reset}
+                maxValue={maxValue}
+                startValue={startValue}
+            />
         </div>
     );
 }
