@@ -2,49 +2,83 @@
   background-color: #282c34;
   height: 800px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 .counter-wrapper {
   border: 3px solid dodgerblue;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #282c34;
-  padding: 30px;
+  padding: 20px;
+  margin: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .display {
   background-color: dodgerblue;
   text-align: center;
   color: #282c34;
-  font-size: 80px;
+  font-size: 100px;
   width: 400px;
   height: 120px;
   padding: 35px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .button {
   background-color: dodgerblue;
   font-size: 30px;
   font-weight: bold;
-  margin: 20px;
+  margin: 10px;
   color: #282c34;
   width: 180px;
   height: 60px;
-  padding: 5px;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .buttons {
   display: flex;
+  border: 3px solid dodgerblue;
+  border-radius: 10px;
+  background-color: #282c34;
+  padding: 12px;
+  margin-top: 20px;
 }
 
 .red {
   color: darkred;
+  border: 3px solid darkred;
+  width: 395px;
+  height: 115px;
 }
 
 .disabled {
   background-color: darkred;
+}
+
+.set-input-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: dodgerblue;
+  text-align: center;
+  color: #282c34;
+  border-radius: 10px;
+  font-size: 30px;
+  width: 400px;
+  height: 120px;
+  padding: 10px;
+}
+
+.input-display {
+  margin: 10px;
+}
+
+.input {
+  text-align: center;
+  font-weight: bold;
 }
