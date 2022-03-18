@@ -1,18 +1,19 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 
 type SetInputType = {
     title: string
-    callBack: () => void
+    callBack: (value: number) => void
+    value: number
 }
 
 const SetInput = (props: SetInputType) => {
-    const onChangeHandler = () => {
-
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        props.callBack(Number(e.currentTarget.value))
     }
     return (
         <span className={'input-display'}>
             {props.title}
-            <input type={'number'} className={'input'} onChange={onChangeHandler}/>
+            <input value={props.value} type={'number'} className={'input'} onChange={onChangeHandler}/>
         </span>
     );
 };

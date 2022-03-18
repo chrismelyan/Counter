@@ -11,10 +11,14 @@ type CounterType = {
 }
 
 
-const Counter: React.FC<CounterType> = ({counter, increment, reset, maxValue, startValue}) => {
+const Counter: React.FC<CounterType> = (
+    {counter, increment, reset, maxValue, startValue}) => {
     return (
         <div className='counter-wrapper'>
-            <CounterDisplay counter={counter} maxValue={maxValue}/>
+            <CounterDisplay
+                maxValue={maxValue}
+                counter={counter}
+            />
             <Buttons
                 increment={increment}
                 reset={reset}
