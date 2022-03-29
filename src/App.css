@@ -7,11 +7,14 @@
 }
 
 .counter-wrapper {
+    width: 400px;
+    height: 300px;
     border: 3px solid dodgerblue;
     border-radius: 10px;
     background-color: #282c34;
-    padding: 20px;
+    padding: 30px;
     margin: 40px;
+    box-shadow: 8px 14px 20px black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,12 +23,16 @@
 .display {
     background-color: dodgerblue;
     text-align: center;
-    color: #282c34;
-    font-size: 100px;
-    width: 400px;
-    height: 120px;
-    padding: 35px;
     border-radius: 10px;
+    font-size: 30px;
+    width: 380px;
+    height: 140px;
+    padding: 10px;
+    color: #282c34;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .setText {
@@ -55,37 +62,27 @@
 
 .buttons {
     display: flex;
-    border: 3px solid dodgerblue;
+    justify-content: center;
+    width: 370px;
+    border: 3px solid #0F4A82;
     border-radius: 10px;
     background-color: #282c34;
     padding: 12px;
-    margin-top: 20px;
+    margin-top: 30px;
 }
-
+.counter {
+    font-size: 50px;
+    font-weight: bold;
+    color: #282c34;
+}
 .red {
     color: darkred;
-    border: 3px solid darkred;
-    width: 395px;
-    height: 115px;
+    font-size: 50px;
+    font-weight: bold;
 }
 
 .disabled {
     background-color: darkred;
-}
-
-.set-input-display {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: dodgerblue;
-    text-align: center;
-    color: #282c34;
-    border-radius: 10px;
-    font-size: 30px;
-    width: 400px;
-    height: 120px;
-    padding: 10px;
 }
 .input-display {
     margin: 10px;
