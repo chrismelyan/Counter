@@ -58,6 +58,7 @@
     width: 180px;
     height: 60px;
     border-radius: 10px;
+    box-shadow: 3px 7px 10px black;
 }
 
 .buttons {
