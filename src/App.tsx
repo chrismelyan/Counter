@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './App.css';
-import Counter from "./Counter";
+import Counter from "./Counter/Counter";
 import SetCounter from "./SetCounter/SetCounter";
 
 export type CounterValuesObjType = {
@@ -42,7 +42,7 @@ function App() {
                 setEditMode={setEditMode}
                 error={error}
                 setError={setError}
-                counterValue={counterValues}
+                counterValues={counterValues}
             />
             <Counter
                 error={error}

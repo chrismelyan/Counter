@@ -1,7 +1,7 @@
 import React from 'react';
 import CounterDisplay from "./CounterDisplay";
 import Buttons from "./Buttons";
-import {CounterValuesObjType} from "./App";
+import {CounterValuesObjType} from "../App";
 
 type CounterType = {
     error: string

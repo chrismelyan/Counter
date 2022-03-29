@@ -69,12 +69,6 @@
     height: 115px;
 }
 
-.redInput {
-    border: darkred;
-    outline: none;
-    background-color: indianred;
-}
-
 .disabled {
     background-color: darkred;
 }
@@ -93,12 +87,16 @@
     height: 120px;
     padding: 10px;
 }
-
 .input-display {
     margin: 10px;
 }
-
 .input {
     text-align: center;
     font-weight: bold;
+}
+.redInput {
+    border: 2px solid darkred;
+    border-radius: 3px;
+    outline: none;
+    background-color: indianred;
 }

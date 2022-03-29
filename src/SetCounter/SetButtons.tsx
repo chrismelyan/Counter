@@ -1,25 +1,20 @@
 import React from 'react';
-import Button from "../Button";
+import Button from "../Counter/Button";
 
 type ButtonsType = {
-    counter: number
-    maxValue: number
-    startValue: number
-    setValue: (start: number) => void
+    setNewValue: () => void
+    editMode: boolean
+    error: string
 }
 
-const Buttons = ({startValue, setValue, maxValue}: ButtonsType) => {
-    const onClickHandler = () => {
-        setValue(startValue)
-    }
-
+const Buttons = ({error, editMode, setNewValue}: ButtonsType) => {
     return (
         <div className={'buttons'}>
-                <Button
-                    callBack={onClickHandler}
-                    title={'set'}
-                    disabled={startValue === maxValue || startValue < 0}
-                />
+            <Button
+                callBack={setNewValue}
+                title={'set'}
+                disabled={!!error || !editMode}
+            />
 
         </div>
     );
