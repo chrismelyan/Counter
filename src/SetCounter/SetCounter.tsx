@@ -2,7 +2,6 @@ import React from 'react';
 import SetCounterDisplay from "./SetCounterDisplay";
 import SetButtons from "./SetButtons";
 
-
 type SetCounterType = {
     setMaxValue: (value: number) => void
     setStartValue: (value: number) => void

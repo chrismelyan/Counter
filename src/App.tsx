@@ -3,64 +3,53 @@ import './App.css';
 import Counter from "./Counter";
 import SetCounter from "./SetCounter/SetCounter";
 
+export type CounterValuesObjType = {
+    startValue: number
+    maxValue: number
+}
+
 function App() {
-    // const maxValue = 5
-    // const startValue = 0
-    const countValue = 1
-    let [maxValue, setMaxValue] = useState<number>(0);
-    let [startValue, setStartValue] = useState<number>(0);
-    let [counter, setCounter] = useState<number>(startValue);
-    // let [error, setError] = useState<boolean>(true);
-    // => {
-    //     let counterAsString = localStorage.getItem('set value')
-    //     if(counterAsString) {
-    //         let newCounter = JSON.parse(counterAsString)
-    //         return newCounter || 0}
-    // })
+    let counterValuesObj = {startValue: 0, maxValue: 0};
 
-    // useEffect(() => {
-    // localStorage.setItem('set value', JSON.stringify(counter))}, [counter])
+    let [counterValues, setCounterValues] = useState<CounterValuesObjType>(counterValuesObj);
+    let [counter, setCounter] = useState(counterValues.startValue);
 
-    // useEffect(() => {
-    //     let counterAsString = localStorage.getItem('set value')
-    //     if(counterAsString) {
-    //         let newCounter = JSON.parse(counterAsString)
-    //         setCounter(newCounter)
-    //     }
-    // }, [counter])
+    let [error, setError] = useState<string>('');
+    let [editMode, setEditMode] = useState<boolean>(true);
 
-    const increment = () => {
-        counter < maxValue && setCounter(counter + countValue)
-    }
-    const reset = () => setCounter(startValue)
+    useEffect(() => {
+        let saved = localStorage.getItem('set value');
+        if(saved) {
+            setCounterValues(JSON.parse(saved))
+        }
+    }, [])
 
-    const setMaxValueCallback = (value: number) => {
-        setMaxValue(value)
-    }
-    const setStartValueCallback = (value: number) => {
-        setStartValue(value)
-    }
+    useEffect(() => {
+        localStorage.setItem('set value', JSON.stringify(counterValues));
+    }, [counterValues]);
 
-    const setValue = (start: number) => {
-        setCounter(start)
+    const settingsChanged = (newValues: CounterValuesObjType) => {
+        setCounterValues(newValues);
+        setCounter(newValues.startValue);
+        setEditMode(false)
     }
 
     return (
         <div className="App">
             <SetCounter
-                setMaxValue={setMaxValueCallback}
-                setStartValue={setStartValueCallback}
-                setValue={setValue}
-                maxValue={maxValue}
-                startValue={startValue}
-                counter={counter}
+                settingsChanged={settingsChanged}
+                editMode={editMode}
+                setEditMode={setEditMode}
+                error={error}
+                setError={setError}
+                counterValue={counterValues}
             />
             <Counter
+                error={error}
+                counterValues={counterValues}
                 counter={counter}
-                increment={increment}
-                reset={reset}
-                maxValue={maxValue}
-                startValue={startValue}
+                setCounter={setCounter}
+                editMode={editMode}
             />
         </div>
     );
