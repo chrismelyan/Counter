@@ -7,25 +7,25 @@ import {AppStateType} from "./redux/store";
 import {changeStartAndMaxValues} from "./redux/actions";
 
 function App() {
-    // const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
-    // const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
-    //
-    // const dispatch = useDispatch()
+    const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
+    const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
 
-    // useEffect(() => {
-    //     localStorage.setItem('set value', JSON.stringify({start: startValue, max: maxValue}));
-    // }, [startValue, maxValue]);
-    //
-    //
-    // useEffect(() => {
-    //     let saved = localStorage.getItem('set value');
-    //     if(saved) {
-    //         let a = JSON.parse(saved)
-    //         let startValue = a.start
-    //         let maxValue = a.max
-    //         dispatch(changeStartAndMaxValues(startValue, maxValue))
-    //     }
-    // }, [])
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        localStorage.setItem('set value', JSON.stringify({start: startValue, max: maxValue}));
+    }, [startValue, maxValue]);
+
+
+    useEffect(() => {
+        let saved = localStorage.getItem('set value');
+        if(saved) {
+            let a = JSON.parse(saved)
+            let startValue = a.start
+            let maxValue = a.max
+            dispatch(changeStartAndMaxValues(startValue, maxValue))
+        }
+    }, [dispatch])
 
 
     return (

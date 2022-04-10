@@ -54,7 +54,7 @@ export const counterReducer = (state: CounterType = initialState, action: Action
                 counterValue: state.counterValue + 1
             }
         case 'RESET':
-            return {...state, startValue: state.startValue}
+            return {...state, counterValue: state.startValue}
     }
     return state
 }
