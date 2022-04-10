@@ -1,51 +1,47 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import SetCounterDisplay from "./SetCounterDisplay";
 import SetButtons from "./SetButtons";
-import {CounterValuesObjType} from "../App";
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "../redux/store";
+import {
+    changeCounterValue,
+    changeMaxValue,
+    changeStartAndMaxValues,
+    changeStartValue,
+    setError
+} from "../redux/actions";
 
-type SetCounterType = {
-    settingsChanged: (newValues: CounterValuesObjType) => void
-    editMode: boolean
-    setEditMode: (isEdited: boolean) => void
-    error: string
-    setError: (message: string) => void
-    counterValues: CounterValuesObjType
-}
-
-const SetCounter: React.FC<SetCounterType> = (
-    {settingsChanged, editMode, setEditMode, setError, error, counterValues}
-) => {
+const SetCounter = () => {
     const errorText = "Incorrect value!";
 
-    let [startValue, setStartValue] = useState<number>(counterValues.startValue);
-    let [maxValue, setMaxValue] = useState<number>(counterValues.maxValue);
+    const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
+    const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
+    const error = useSelector<AppStateType, string>(state => state.counter.error)
+    const editMode = useSelector<AppStateType, boolean>(state => state.counter.editMode)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        setStartValue(counterValues.startValue);
-        setMaxValue(counterValues.maxValue);
-    }, [counterValues])
+        dispatch(changeStartAndMaxValues(maxValue, startValue))
+    }, [maxValue, startValue])
 
     const setNewValue = () => {
         if (editMode && !error) {
-            const newValues = {startValue, maxValue};
-            settingsChanged(newValues);
+            dispatch(changeCounterValue(startValue, maxValue))
         }
     }
     const startValueCallback = (value: number) => {
-        setStartValue(value);
-        setEditMode(true);
+        dispatch(changeStartValue(value, true))
 
-        if (value < 0) return setError(errorText);
-        if (value >= maxValue) return setError(errorText);
-        if (maxValue >= 0) setError('');
+        if (value < 0) return dispatch(setError(errorText));
+        if (value >= maxValue) return dispatch(setError(errorText));
+        if (maxValue >= 0) dispatch(setError(''));
     }
     const maxValueCallback = (value: number) => {
-        setMaxValue(value)
-        setEditMode(true);
+        dispatch(changeMaxValue(value, true))
 
-        if (value < 0) return setError(errorText);
-        if (value <= startValue) return setError(errorText);
-        if (startValue >= 0) setError('');
+        if (value < 0) return dispatch(setError(errorText));
+        if (value <= startValue) return dispatch(setError(errorText));
+        if (startValue >= 0) dispatch(setError(''));
     }
 
     return (

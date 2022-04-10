@@ -1,56 +1,37 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import Counter from "./Counter/Counter";
 import SetCounter from "./SetCounter/SetCounter";
-
-export type CounterValuesObjType = {
-    startValue: number
-    maxValue: number
-}
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "./redux/store";
+import {changeStartAndMaxValues} from "./redux/actions";
 
 function App() {
-    let counterValuesObj = {startValue: 0, maxValue: 0};
+    // const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
+    // const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
+    //
+    // const dispatch = useDispatch()
 
-    let [counterValues, setCounterValues] = useState<CounterValuesObjType>(counterValuesObj);
-    let [counter, setCounter] = useState(counterValues.startValue);
+    // useEffect(() => {
+    //     localStorage.setItem('set value', JSON.stringify({start: startValue, max: maxValue}));
+    // }, [startValue, maxValue]);
+    //
+    //
+    // useEffect(() => {
+    //     let saved = localStorage.getItem('set value');
+    //     if(saved) {
+    //         let a = JSON.parse(saved)
+    //         let startValue = a.start
+    //         let maxValue = a.max
+    //         dispatch(changeStartAndMaxValues(startValue, maxValue))
+    //     }
+    // }, [])
 
-    let [error, setError] = useState<string>('');
-    let [editMode, setEditMode] = useState<boolean>(true);
-
-    useEffect(() => {
-        let saved = localStorage.getItem('set value');
-        if(saved) {
-            setCounterValues(JSON.parse(saved))
-        }
-    }, [])
-
-    useEffect(() => {
-        localStorage.setItem('set value', JSON.stringify(counterValues));
-    }, [counterValues]);
-
-    const settingsChanged = (newValues: CounterValuesObjType) => {
-        setCounterValues(newValues);
-        setCounter(newValues.startValue);
-        setEditMode(false)
-    }
 
     return (
         <div className="App">
-            <SetCounter
-                settingsChanged={settingsChanged}
-                editMode={editMode}
-                setEditMode={setEditMode}
-                error={error}
-                setError={setError}
-                counterValues={counterValues}
-            />
-            <Counter
-                error={error}
-                counterValues={counterValues}
-                counter={counter}
-                setCounter={setCounter}
-                editMode={editMode}
-            />
+            <SetCounter />
+            <Counter />
         </div>
     );
 }
