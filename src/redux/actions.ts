@@ -33,9 +33,17 @@ export const changeEditMode = (editMode: boolean) => {
     } as const
 }
 
-export const increment = () => {
+export const setError = (error: string) => {
     return {
-        type: 'INCREMENT'
+        type: 'SET_ERROR',
+        payload: {error}
+    } as const
+}
+
+export const changeCounterValue = (startValue: number, maxValue: number, editMode: boolean) => {
+    return {
+        type: 'CHANGE_COUNTER_VALUE',
+        payload: {startValue, maxValue, editMode}
     } as const
 }
 
@@ -45,17 +53,8 @@ export const reset = () => {
     } as const
 }
 
-export const setError = (error: string) => {
+export const increment = () => {
     return {
-        type: 'SET_ERROR',
-        payload: {error}
+        type: 'INCREMENT'
     } as const
 }
-
-export const changeCounterValue = (startValue: number, maxValue: number) => {
-    return {
-        type: 'CHANGE_COUNTER_VALUE',
-        payload: {startValue, maxValue}
-    } as const
-}
-

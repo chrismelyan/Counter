@@ -6,27 +6,28 @@ import {AppStateType} from "../redux/store";
 import {
     changeCounterValue,
     changeMaxValue,
-    changeStartAndMaxValues,
     changeStartValue,
     setError
 } from "../redux/actions";
+import {CounterType, selectAllCounter} from "../redux/counter-reducer";
 
 const SetCounter = () => {
     const errorText = "Incorrect value!";
-
-    const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
-    const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
-    const error = useSelector<AppStateType, string>(state => state.counter.error)
-    const editMode = useSelector<AppStateType, boolean>(state => state.counter.editMode)
+    const {
+        maxValue,
+        startValue,
+        error,
+        editMode
+    } = useSelector<AppStateType, CounterType>(selectAllCounter)
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(changeStartAndMaxValues(maxValue, startValue))
-    }, [maxValue, startValue])
+    // useEffect(() => {
+    //     dispatch(changeStartAndMaxValues(maxValue, startValue))
+    // }, [maxValue, startValue])
 
     const setNewValue = () => {
         if (editMode && !error) {
-            dispatch(changeCounterValue(startValue, maxValue))
+            dispatch(changeCounterValue(startValue, maxValue, false))
         }
     }
     const startValueCallback = (value: number) => {
