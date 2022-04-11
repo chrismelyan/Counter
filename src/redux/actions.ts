@@ -47,13 +47,14 @@ export const changeCounterValue = (startValue: number, maxValue: number, editMod
     } as const
 }
 
-export const reset = () => {
+export const resetAC = (value: number) => {
     return {
-        type: 'RESET'
+        type: 'RESET',
+        payload: {value}
     } as const
 }
 
-export const increment = () => {
+export const incrementAC = () => {
     return {
         type: 'INCREMENT'
     } as const

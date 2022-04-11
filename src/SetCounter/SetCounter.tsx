@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import SetCounterDisplay from "./SetCounterDisplay";
 import SetButtons from "./SetButtons";
 import {useDispatch, useSelector} from "react-redux";
@@ -20,10 +20,6 @@ const SetCounter = () => {
         editMode
     } = useSelector<AppStateType, CounterType>(selectAllCounter)
     const dispatch = useDispatch()
-
-    // useEffect(() => {
-    //     dispatch(changeStartAndMaxValues(maxValue, startValue))
-    // }, [maxValue, startValue])
 
     const setNewValue = () => {
         if (editMode && !error) {

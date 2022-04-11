@@ -4,14 +4,14 @@ import {
     changeMaxValue,
     changeSettings, changeStartAndMaxValues,
     changeStartValue,
-    increment, reset, setError
+    incrementAC, resetAC, setError
 } from "./actions";
 import {AppStateType} from "./store";
 
 export type CounterType = {
     startValue: number
     maxValue: number
-    counterValue: number
+    value: number
     error: string
     editMode: boolean
 }
@@ -19,7 +19,7 @@ export type CounterType = {
 const initialState = {
     startValue: 0,
     maxValue: 0,
-    counterValue: 0,
+    value: 0,
     error: '',
     editMode: true
 }
@@ -29,8 +29,8 @@ type ActionType = ReturnType<typeof changeSettings>
     | ReturnType<typeof changeMaxValue>
     | ReturnType<typeof changeStartAndMaxValues>
     | ReturnType<typeof changeEditMode>
-    | ReturnType<typeof increment>
-    | ReturnType<typeof reset>
+    | ReturnType<typeof incrementAC>
+    | ReturnType<typeof resetAC>
     | ReturnType<typeof setError>
     | ReturnType<typeof changeCounterValue>
 
@@ -38,11 +38,11 @@ type ActionType = ReturnType<typeof changeSettings>
 export const counterReducer = (state: CounterType = initialState, action: ActionType): CounterType => {
     switch (action.type) {
         case 'CHANGE_SETTINGS':
-        case 'CHANGE_COUNTER_VALUE':
         case 'CHANGE_START_VALUE':
         case 'CHANGE_MAX_VALUE':
         case 'CHANGE_START_AND_MAX_VALUES':
         case 'CHANGE_EDIT_MODE':
+        case 'RESET':
         case 'SET_ERROR':
             return {
                 ...state,
@@ -50,11 +50,14 @@ export const counterReducer = (state: CounterType = initialState, action: Action
             }
         case 'INCREMENT':
             return {
-                ...state,
-                counterValue: state.counterValue + 1
+                ...state, value: state.value + 1
             }
-        case 'RESET':
-            return {...state, counterValue: state.startValue}
+        case 'CHANGE_COUNTER_VALUE':
+            return {
+                ...state,
+                ...action.payload,
+                value: action.payload.startValue
+            }
     }
     return state
 }
