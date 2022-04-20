@@ -2,7 +2,6 @@ import {
     changeCounterValue,
     changeEditMode,
     changeMaxValue,
-    changeSettings, changeStartAndMaxValues,
     changeStartValue,
     incrementAC, resetAC, setError
 } from "./actions";
@@ -24,10 +23,8 @@ const initialState = {
     editMode: true
 }
 
-type ActionType = ReturnType<typeof changeSettings>
-    | ReturnType<typeof changeStartValue>
+type ActionType = ReturnType<typeof changeStartValue>
     | ReturnType<typeof changeMaxValue>
-    | ReturnType<typeof changeStartAndMaxValues>
     | ReturnType<typeof changeEditMode>
     | ReturnType<typeof incrementAC>
     | ReturnType<typeof resetAC>
@@ -37,16 +34,17 @@ type ActionType = ReturnType<typeof changeSettings>
 
 export const counterReducer = (state: CounterType = initialState, action: ActionType): CounterType => {
     switch (action.type) {
-        case 'CHANGE_SETTINGS':
         case 'CHANGE_START_VALUE':
         case 'CHANGE_MAX_VALUE':
-        case 'CHANGE_START_AND_MAX_VALUES':
         case 'CHANGE_EDIT_MODE':
-        case 'RESET':
         case 'SET_ERROR':
             return {
                 ...state,
                 ...action.payload
+            }
+        case 'RESET':
+            return {
+                ...state, value: state.startValue
             }
         case 'INCREMENT':
             return {

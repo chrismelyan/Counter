@@ -23,9 +23,8 @@ const Counter = () => {
         }
     }
     const reset = () => {
-        dispatch(resetAC(startValue))
+        dispatch(resetAC())
     }
-
 
     return (
         <div className='counter-wrapper'>

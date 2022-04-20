@@ -23,7 +23,7 @@ const SetCounter = () => {
 
     const setNewValue = () => {
         if (editMode && !error) {
-            dispatch(changeCounterValue(startValue, maxValue, false))
+            dispatch(changeCounterValue(startValue, false))
         }
     }
     const startValueCallback = (value: number) => {
